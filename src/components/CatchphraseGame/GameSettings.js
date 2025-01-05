@@ -1,31 +1,44 @@
 import React from 'react';
+import { Box, Select, MenuItem, Button, FormControl } from '@mui/material';
 import { AutoAwesome } from '@mui/icons-material';
 
 const GameSettings = ({ roundDuration, onTimeChange, partyMode, onPartyModeChange }) => {
   return (
-    <div className="settings-banner">
-      <div className="settings-control">
-        <select 
-          value={roundDuration} 
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        gap: 2,
+        p: 2,
+        borderBottom: 1,
+        borderColor: 'divider'
+      }}
+    >
+      <FormControl size="small">
+        <Select
+          value={roundDuration}
           onChange={(e) => onTimeChange(e.target.value)}
-          className="time-select"
+          sx={{ minWidth: 100 }}
         >
-          <option value={30}>30s</option>
-          <option value={45}>45s</option>
-          <option value={60}>60s</option>
-          <option value={90}>90s</option>
-          <option value={120}>120s</option>
-        </select>
-      </div>
+          <MenuItem value={30}>30s</MenuItem>
+          <MenuItem value={45}>45s</MenuItem>
+          <MenuItem value={60}>60s</MenuItem>
+          <MenuItem value={90}>90s</MenuItem>
+          <MenuItem value={120}>120s</MenuItem>
+        </Select>
+      </FormControl>
 
-      <button 
+      <Button
+        variant={partyMode ? "contained" : "outlined"}
+        color="primary"
         onClick={() => onPartyModeChange(!partyMode)}
-        className={`party-mode-button ${partyMode ? 'active' : ''}`}
+        startIcon={<AutoAwesome />}
+        size="small"
       >
-        <AutoAwesome sx={{ fontSize: 16 }} />
         {partyMode ? 'Chill Mode' : 'Party Mode'}
-      </button>
-    </div>
+      </Button>
+    </Box>
   );
 };
 

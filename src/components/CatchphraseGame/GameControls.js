@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Box, Typography } from '@mui/material';
 import { PlayArrow, Pause, RestartAlt } from '@mui/icons-material';
 
 const GameControls = ({
@@ -11,51 +12,88 @@ const GameControls = ({
   onSkip
 }) => {
   return (
-    <div className="controls">
-      <div className="main-controls">
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
         {!isPlaying ? (
-          <div>
-            <button onClick={onStart} className="play-button">
-              <PlayArrow sx={{ fontSize: 24 }} />
+          <Box sx={{ textAlign: 'center' }}>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={onStart}
+              startIcon={<PlayArrow />}
+              sx={{ minWidth: 140 }}
+            >
               {isPaused ? 'Resume' : 'Start Round'}
-            </button>
-            <div className="shortcuts">Press Enter</div>
-          </div>
+            </Button>
+            <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.secondary' }}>
+              Press Enter
+            </Typography>
+          </Box>
         ) : (
-          <div>
-            <button onClick={onPause} className="pause-button">
-              <Pause sx={{ fontSize: 24 }} />
+          <Box sx={{ textAlign: 'center' }}>
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={onPause}
+              startIcon={<Pause />}
+              sx={{ minWidth: 140 }}
+            >
               Pause
-            </button>
-            <div className="shortcuts">Press P</div>
-          </div>
+            </Button>
+            <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.secondary' }}>
+              Press P
+            </Typography>
+          </Box>
         )}
-        <div>
-          <button onClick={onReset} className="reset-button">
-            <RestartAlt sx={{ fontSize: 24 }} />
+        <Box sx={{ textAlign: 'center' }}>
+          <Button
+            variant="outlined"
+            color="inherit"
+            onClick={onReset}
+            startIcon={<RestartAlt />}
+            sx={{ minWidth: 140 }}
+          >
             Reset Game
-          </button>
-          <div className="shortcuts">Press R</div>
-        </div>
-      </div>
+          </Button>
+          <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.secondary' }}>
+            Press R
+          </Typography>
+        </Box>
+      </Box>
       
       {isPlaying && (
-        <div className="game-controls">
-          <div>
-            <button onClick={onCorrect} className="got-it-button">
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+          <Box sx={{ textAlign: 'center' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={onCorrect}
+              size="large"
+              sx={{ minWidth: 140 }}
+            >
               Got it!
-            </button>
-            <div className="shortcuts">Space or G</div>
-          </div>
-          <div>
-            <button onClick={onSkip} className="skip-button">
+            </Button>
+            <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.secondary' }}>
+              Space or G
+            </Typography>
+          </Box>
+          <Box sx={{ textAlign: 'center' }}>
+            <Button
+              variant="contained"
+              color="inherit"
+              onClick={onSkip}
+              size="large"
+              sx={{ minWidth: 140 }}
+            >
               Skip
-            </button>
-            <div className="shortcuts">Press S</div>
-          </div>
-        </div>
+            </Button>
+            <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.secondary' }}>
+              Press S
+            </Typography>
+          </Box>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

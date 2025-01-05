@@ -1,10 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import { Box, Typography, Paper } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useGame } from './useGame';
 import GameDisplay from './GameDisplay';
 import GameControls from './GameControls';
 import GameScores from './GameScores';
 import GameSettings from './GameSettings';
-import './styles/index.css';
+
+// Create theme
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif'
+    ].join(','),
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none', // Prevents all-caps button text
+        },
+      },
+    },
+  },
+});
 
 const CatchphraseGame = () => {
   const [partyMode, setPartyMode] = useState(false);
@@ -37,40 +62,67 @@ const CatchphraseGame = () => {
   }, [game]);
 
   return (
-    <div className={`game-container ${partyMode ? 'party-mode' : ''}`}>
-      <GameSettings 
-        roundDuration={game.roundDuration}
-        onTimeChange={game.handleTimeChange}
-        partyMode={partyMode}
-        onPartyModeChange={setPartyMode}
-      />
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          minHeight: '100vh',
+          bgcolor: 'grey.100',
+          p: { xs: 1, sm: 2, md: 3 },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Paper
+          elevation={2}
+          sx={{
+            width: '100%',
+            maxWidth: 600,
+            overflow: 'hidden',
+            bgcolor: 'background.paper',
+            borderRadius: 2
+          }}
+          className={partyMode ? 'party-mode' : ''}
+        >
+          <GameSettings 
+            roundDuration={game.roundDuration}
+            onTimeChange={game.handleTimeChange}
+            partyMode={partyMode}
+            onPartyModeChange={setPartyMode}
+          />
 
-      <h1>Catchphrase</h1>
+          <Box sx={{ p: 3 }}>
+            <Typography variant="h4" align="center" gutterBottom>
+              Catchphrase
+            </Typography>
 
-      <GameScores
-        team1Score={game.team1Score}
-        team2Score={game.team2Score}
-        currentTeam={game.currentTeam}
-      />
+            <GameScores
+              team1Score={game.team1Score}
+              team2Score={game.team2Score}
+              currentTeam={game.currentTeam}
+            />
 
-      <GameDisplay
-        timeLeft={game.timeLeft}
-        currentWord={game.currentWord}
-        isPlaying={game.isPlaying}
-        isPaused={game.isPaused}
-        currentTeam={game.currentTeam}
-      />
+            <GameDisplay
+              timeLeft={game.timeLeft}
+              currentWord={game.currentWord}
+              isPlaying={game.isPlaying}
+              isPaused={game.isPaused}
+              currentTeam={game.currentTeam}
+            />
 
-      <GameControls
-        isPlaying={game.isPlaying}
-        isPaused={game.isPaused}
-        onStart={game.startRound}
-        onPause={game.pauseGame}
-        onReset={game.resetGame}
-        onCorrect={game.handleCorrect}
-        onSkip={game.handleSkip}
-      />
-    </div>
+            <GameControls
+              isPlaying={game.isPlaying}
+              isPaused={game.isPaused}
+              onStart={game.startRound}
+              onPause={game.pauseGame}
+              onReset={game.resetGame}
+              onCorrect={game.handleCorrect}
+              onSkip={game.handleSkip}
+            />
+          </Box>
+        </Paper>
+      </Box>
+    </ThemeProvider>
   );
 };
 
