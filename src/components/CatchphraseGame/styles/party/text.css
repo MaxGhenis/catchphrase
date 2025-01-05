@@ -1,0 +1,41 @@
+/* Text animations */
+.party-mode .MuiTypography-h4 {
+    animation: crazyDance 2s ease-in-out infinite;
+    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    background-size: 1400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+  }
+  
+  .party-mode .MuiTypography-h3 {
+    animation: rainbow 3s linear infinite, bounce 0.5s ease infinite;
+    font-size: 54px !important;
+    text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+    transform-origin: center;
+    font-weight: 900 !important;
+  }
+  
+  @keyframes rainbow {
+    0% { color: #ff0000; }
+    16.666% { color: #ff7f00; }
+    33.333% { color: #ffff00; }
+    50% { color: #00ff00; }
+    66.666% { color: #0000ff; }
+    83.333% { color: #4b0082; }
+    100% { color: #ff0000; }
+  }
+  
+  @keyframes crazyDance {
+    0% { transform: rotate(-5deg) scale(1) translateY(0); }
+    25% { transform: rotate(5deg) scale(1.2) translateY(-10px); }
+    50% { transform: rotate(-5deg) scale(1) translateY(0); }
+    75% { transform: rotate(5deg) scale(1.2) translateY(-10px); }
+    100% { transform: rotate(-5deg) scale(1) translateY(0); }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.1); }
+  }

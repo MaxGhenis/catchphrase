@@ -6,7 +6,6 @@ const GameDisplay = ({
   timeLeft, 
   currentWord, 
   isPlaying, 
-  isPaused, 
   currentTeam,
   team1Name,
   team2Name 
@@ -15,15 +14,13 @@ const GameDisplay = ({
 
   return (
     <>
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          gap: 2,
-          my: 4
-        }}
-      >
+      <Box sx={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        gap: 2,
+        my: 4
+      }}>
         <TimerIcon sx={{ fontSize: 40 }} />
         <Typography
           variant="h2"
@@ -38,27 +35,35 @@ const GameDisplay = ({
         </Typography>
       </Box>
 
-      <Box sx={{ my: 4, px: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Typography
-          variant="h3"
-          sx={{
-            minHeight: 70,
-            mb: 2,
-            fontWeight: 500,
-            color: 'text.primary',
-            width: '100%',
-            textAlign: 'center'
-          }}
-        >
-          {isPlaying ? currentWord : isPaused ? 'Resume Round' : 'Press Start Round to Begin'}
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          sx={{ color: 'text.secondary' }}
-        >
-          {isPlaying || isPaused ? `${currentTeamName}'s Round` : `${currentTeamName} Get Ready!`}
-        </Typography>
-      </Box>
+      {isPlaying && (
+        <Box sx={{ 
+          my: 4, 
+          px: 2, 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center',
+          minHeight: '120px',  // Fixed height to prevent layout shifts
+          justifyContent: 'center'
+        }}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 500,
+              color: 'text.primary',
+              textAlign: 'center',
+              mb: 1
+            }}
+          >
+            {currentWord}
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{ color: 'text.secondary' }}
+          >
+            {`${currentTeamName}'s Round`}
+          </Typography>
+        </Box>
+      )}
     </>
   );
 };

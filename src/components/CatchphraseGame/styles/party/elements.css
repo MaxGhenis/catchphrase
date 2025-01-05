@@ -1,0 +1,123 @@
+/* Flying elements */
+.party-mode::before {
+    content: '🎪🦄🌈';
+    position: absolute;
+    font-size: 40px;
+    animation: flyAcross 7s linear infinite;
+    top: 20%;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  
+  .party-mode::after {
+    content: '🎉🎈✨';
+    position: absolute;
+    font-size: 30px;
+    animation: flyAcrossReverse 5s linear infinite;
+    animation-delay: 2.5s;
+    top: 60%;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  
+  .party-mode > div:nth-child(2n)::before {
+    content: '🌟🎪🎨';
+    position: absolute;
+    font-size: 24px;
+    animation: diagonalFly 4s ease-in-out infinite;
+    left: 10%;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  
+  .party-mode > div:nth-child(3n)::after {
+    content: '🎵🎸🎪';
+    position: absolute;
+    font-size: 28px;
+    animation: diagonalFlyReverse 6s ease-in-out infinite;
+    right: 15%;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  
+  .party-mode > div:nth-child(4n)::before {
+    content: '🌈🦄✨';
+    position: absolute;
+    font-size: 32px;
+    animation: zigZag 8s linear infinite;
+    left: 30%;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  
+  @keyframes flyAcross {
+    0% {
+      left: -100px;
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+      left: calc(100% + 100px);
+      transform: scale(1) rotate(360deg);
+    }
+  }
+  
+  @keyframes flyAcrossReverse {
+    0% {
+      right: -100px;
+      transform: scale(1) rotate(360deg);
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+      right: calc(100% + 100px);
+      transform: scale(1) rotate(0deg);
+    }
+  }
+  
+  @keyframes diagonalFly {
+    0% {
+      left: -50px;
+      top: -50px;
+      transform: scale(0.5);
+    }
+    50% {
+      left: 50%;
+      top: 50%;
+      transform: scale(1.5);
+    }
+    100% {
+      left: calc(100% + 50px);
+      top: calc(100% + 50px);
+      transform: scale(0.5);
+    }
+  }
+  
+  @keyframes diagonalFlyReverse {
+    0% {
+      right: -50px;
+      bottom: -50px;
+      transform: scale(0.5);
+    }
+    50% {
+      right: 50%;
+      bottom: 50%;
+      transform: scale(1.5);
+    }
+    100% {
+      right: calc(100% + 50px);
+      bottom: calc(100% + 50px);
+      transform: scale(0.5);
+    }
+  }
+  
+  @keyframes zigZag {
+    0% { transform: translateX(-100%) translateY(0) scale(1); }
+    25% { transform: translateX(-50%) translateY(50px) scale(1.2); }
+    50% { transform: translateX(0) translateY(-50px) scale(1.5); }
+    75% { transform: translateX(50%) translateY(50px) scale(1.2); }
+    100% { transform: translateX(200%) translateY(0) scale(1); }
+  }

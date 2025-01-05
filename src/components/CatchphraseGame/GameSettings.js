@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Select, MenuItem, Button, IconButton, TextField, Tooltip } from '@mui/material';
+import { Box, Select, MenuItem, Button, IconButton, TextField } from '@mui/material';
 import { AutoAwesome, DarkMode, LightMode } from '@mui/icons-material';
 
 const GameSettings = ({ 

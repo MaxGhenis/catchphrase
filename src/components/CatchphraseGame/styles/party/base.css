@@ -1,0 +1,18 @@
+/* Base party mode - light and dark aware */
+.party-mode.MuiPaper-root {
+  background: var(--party-bg, white) !important;
+  animation: backgroundShift 10s linear infinite !important;
+}
+
+/* Adjust background shift based on theme */
+[data-mode="dark"] .party-mode.MuiPaper-root {
+  --party-bg: #121212;
+}
+
+@keyframes backgroundShift {
+  0% { background: var(--party-bg) !important; }
+  25% { background: linear-gradient(45deg, var(--party-bg), #ff61d5) !important; }
+  50% { background: linear-gradient(45deg, var(--party-bg), #61deff) !important; }
+  75% { background: linear-gradient(45deg, var(--party-bg), #61ff7e) !important; }
+  100% { background: var(--party-bg) !important; }
+}
