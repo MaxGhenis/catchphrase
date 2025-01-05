@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-const GameScores = ({ team1Score, team2Score, currentTeam }) => {
+const GameScores = ({ team1Score, team2Score, currentTeam, team1Name, team2Name }) => {
   return (
     <Box 
       sx={{ 
@@ -19,7 +19,7 @@ const GameScores = ({ team1Score, team2Score, currentTeam }) => {
           transition: 'all 0.3s ease'
         }}
       >
-        Team 1: {team1Score}
+        {team1Name}: {team1Score}
       </Typography>
       <Typography
         variant="h5"
@@ -29,7 +29,7 @@ const GameScores = ({ team1Score, team2Score, currentTeam }) => {
           transition: 'all 0.3s ease'
         }}
       >
-        Team 2: {team2Score}
+        {team2Name}: {team2Score}
       </Typography>
     </Box>
   );

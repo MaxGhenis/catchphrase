@@ -1,12 +1,15 @@
-/* Base party mode */
-.party-mode {
-    background: white !important;
-    animation: backgroundShift 10s linear infinite;
-    position: relative;
-    overflow: hidden;
+/* Base party mode - light and dark aware */
+.party-mode.MuiPaper-root {
+    background: var(--party-bg, white) !important;
+    animation: backgroundShift 10s linear infinite !important;
   }
   
-  /* Party elements - using multiple pseudo-elements for more chaos */
+  /* Adjust background shift based on theme */
+  [data-mode="dark"] .party-mode.MuiPaper-root {
+    --party-bg: #121212;
+  }
+  
+  /* Party elements */
   .party-mode::before {
     content: '🎪🦄🌈';
     position: absolute;
@@ -14,6 +17,7 @@
     animation: flyAcross 7s linear infinite;
     top: 20%;
     white-space: nowrap;
+    z-index: 2;
   }
   
   .party-mode::after {
@@ -24,9 +28,10 @@
     animation-delay: 2.5s;
     top: 60%;
     white-space: nowrap;
+    z-index: 2;
   }
   
-  /* More flying elements on child divs */
+  /* More flying elements */
   .party-mode > div:nth-child(2n)::before {
     content: '🌟🎪🎨';
     position: absolute;
@@ -34,6 +39,7 @@
     animation: diagonalFly 4s ease-in-out infinite;
     left: 10%;
     white-space: nowrap;
+    z-index: 2;
   }
   
   .party-mode > div:nth-child(3n)::after {
@@ -43,6 +49,7 @@
     animation: diagonalFlyReverse 6s ease-in-out infinite;
     right: 15%;
     white-space: nowrap;
+    z-index: 2;
   }
   
   .party-mode > div:nth-child(4n)::before {
@@ -52,60 +59,63 @@
     animation: zigZag 8s linear infinite;
     left: 30%;
     white-space: nowrap;
+    z-index: 2;
   }
   
-  /* Super rainbow title */
+  /* Title and text animations */
   .party-mode .MuiTypography-h4 {
-    animation: crazyDance 2s ease-in-out infinite, rainbow 3s linear infinite;
-    font-size: 2.5rem !important;
-    text-shadow: 3px 3px 0 #ff0000,
-                 6px 6px 0 #ff7f00,
-                 9px 9px 0 #ffff00;
-    font-weight: 900 !important;
-    letter-spacing: 3px;
-    transform-origin: center;
+    animation: crazyDance 2s ease-in-out infinite;
+    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    background-size: 1400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
   }
   
-  /* Extreme word display */
   .party-mode .MuiTypography-h3 {
-    animation: rainbow 3s linear infinite, bounce 0.5s ease infinite, shake 0.5s infinite;
+    animation: rainbow 3s linear infinite, bounce 0.5s ease infinite;
     font-size: 54px !important;
-    text-shadow: 3px 3px 10px rgba(255,0,0,0.5),
-                 -3px -3px 10px rgba(0,255,0,0.5),
-                 6px 6px 15px rgba(0,0,255,0.5);
+    text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
     transform-origin: center;
     font-weight: 900 !important;
   }
   
-  /* Party buttons */
+  /* Button styles */
   .party-mode .MuiButton-root {
     animation: colorPulse 4s infinite, bounce 2s infinite;
     transform: scale(1.1);
     transition: all 0.3s ease;
-    border: 3px solid transparent;
-    background-image: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .party-mode .MuiButton-root::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
     background-size: 400% 400%;
     animation: gradientBG 3s ease infinite;
+    z-index: -1;
+    opacity: 0.5;
   }
   
   .party-mode .MuiButton-root:hover {
     transform: scale(1.3) rotate(10deg);
-    filter: brightness(1.5);
   }
   
-  /* Score display */
-  .party-mode .MuiTypography-h5 {
-    font-size: 2rem !important;
-    animation: glow 1s ease-in-out infinite alternate;
-  }
-  
-  /* Animations */
+  /* Background animations */
   @keyframes backgroundShift {
-    0% { background: linear-gradient(45deg, #ff61d5, #b318f0) }
-    25% { background: linear-gradient(45deg, #61deff, #18f0e8) }
-    50% { background: linear-gradient(45deg, #61ff7e, #18f03c) }
-    75% { background: linear-gradient(45deg, #fff461, #f0cd18) }
-    100% { background: linear-gradient(45deg, #ff61d5, #b318f0) }
+    0% { background: var(--party-bg) !important; }
+    25% { background: linear-gradient(45deg, var(--party-bg), #ff61d5) !important; }
+    50% { background: linear-gradient(45deg, var(--party-bg), #61deff) !important; }
+    75% { background: linear-gradient(45deg, var(--party-bg), #61ff7e) !important; }
+    100% { background: var(--party-bg) !important; }
   }
   
   @keyframes flyAcross {
@@ -180,26 +190,6 @@
     100% { transform: translateX(200%) translateY(0) scale(1); }
   }
   
-  @keyframes shake {
-    0%, 100% { transform: translateX(0) rotate(0); }
-    25% { transform: translateX(-5px) rotate(-5deg); }
-    75% { transform: translateX(5px) rotate(5deg); }
-  }
-  
-  @keyframes crazyDance {
-    0% { transform: rotate(-5deg) scale(1) translateY(0); }
-    25% { transform: rotate(5deg) scale(1.2) translateY(-10px); }
-    50% { transform: rotate(-5deg) scale(1) translateY(0); }
-    75% { transform: rotate(5deg) scale(1.2) translateY(-10px); }
-    100% { transform: rotate(-5deg) scale(1) translateY(0); }
-  }
-  
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
   @keyframes rainbow {
     0% { color: #ff0000; }
     16.666% { color: #ff7f00; }
@@ -210,28 +200,32 @@
     100% { color: #ff0000; }
   }
   
+  @keyframes crazyDance {
+    0% { transform: rotate(-5deg) scale(1) translateY(0); }
+    25% { transform: rotate(5deg) scale(1.2) translateY(-10px); }
+    50% { transform: rotate(-5deg) scale(1) translateY(0); }
+    75% { transform: rotate(5deg) scale(1.2) translateY(-10px); }
+    100% { transform: rotate(-5deg) scale(1) translateY(0); }
+  }
+  
   @keyframes bounce {
     0%, 100% { transform: translateY(0) scale(1); }
     50% { transform: translateY(-15px) scale(1.1); }
   }
   
-  @keyframes glow {
-    from {
-      text-shadow: 0 0 10px #fff,
-                   0 0 20px #fff,
-                   0 0 30px #0073e6,
-                   0 0 40px #0073e6,
-                   0 0 50px #0073e6,
-                   0 0 60px #0073e6,
-                   0 0 70px #0073e6;
+  @keyframes colorPulse {
+    0%, 100% { 
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                  0 0 20px rgba(255, 0, 255, 0.5);
     }
-    to {
-      text-shadow: 0 0 20px #fff,
-                   0 0 30px #ff4da6,
-                   0 0 40px #ff4da6,
-                   0 0 50px #ff4da6,
-                   0 0 60px #ff4da6,
-                   0 0 70px #ff4da6,
-                   0 0 80px #ff4da6;
+    50% { 
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                  0 0 40px rgba(0, 255, 255, 0.5);
     }
+  }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }

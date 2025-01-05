@@ -10,6 +10,8 @@ export const useGame = () => {
   const [team2Score, setTeam2Score] = useState(0);
   const [currentTeam, setCurrentTeam] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+  const [team1Name, setTeam1Name] = useState('Team 1');
+  const [team2Name, setTeam2Name] = useState('Team 2');
 
   // Use ref to avoid dependency issues with useEffect
   const timeLeftRef = useRef(timeLeft);
@@ -44,6 +46,14 @@ export const useGame = () => {
     }
     getNewWord();
   }, [currentTeam, getNewWord]);
+
+  const handleTeamNameChange = useCallback((teamNumber, name) => {
+    if (teamNumber === 1) {
+      setTeam1Name(name);
+    } else {
+      setTeam2Name(name);
+    }
+  }, []);
 
   const handleSkip = useCallback(() => {
     getNewWord();
@@ -101,6 +111,8 @@ export const useGame = () => {
     isPaused,
     team1Score,
     team2Score,
+    team1Name,
+    team2Name,
     currentTeam,
     handleCorrect,
     handleSkip,
@@ -108,5 +120,6 @@ export const useGame = () => {
     pauseGame,
     resetGame,
     handleTimeChange,
+    handleTeamNameChange,
   };
 };

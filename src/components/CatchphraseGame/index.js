@@ -1,39 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Paper } from '@mui/material';
+import { Box, Typography, Paper, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useGame } from './useGame';
 import GameDisplay from './GameDisplay';
 import GameControls from './GameControls';
 import GameScores from './GameScores';
 import GameSettings from './GameSettings';
-
-// Create theme
-const theme = createTheme({
-  typography: {
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif'
-    ].join(','),
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none', // Prevents all-caps button text
-        },
-      },
-    },
-  },
-});
+import './styles/party-mode.css';
 
 const CatchphraseGame = () => {
   const [partyMode, setPartyMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const game = useGame();
+
+  // Initialize dark mode based on system preference
+  useEffect(() => {
+    setDarkMode(prefersDarkMode);
+  }, [prefersDarkMode]);
+
+  // Add dark mode attribute to body
+  useEffect(() => {
+    document.body.setAttribute('data-mode', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+      background: {
+        default: darkMode ? '#121212' : '#f5f5f5',
+        paper: darkMode ? '#1e1e1e' : '#ffffff',
+      },
+      text: {
+        primary: darkMode ? '#ffffff' : '#000000',
+        secondary: darkMode ? '#b3b3b3' : '#666666',
+      },
+    },
+    typography: {
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif'
+      ].join(','),
+      h4: {
+        fontSize: '2rem',
+        fontWeight: 600,
+        marginBottom: '1rem',
+      },
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            fontWeight: 500,
+          },
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundImage: 'none',
+          },
+        },
+      },
+    },
+  });
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -66,11 +102,12 @@ const CatchphraseGame = () => {
       <Box
         sx={{
           minHeight: '100vh',
-          bgcolor: 'grey.100',
+          bgcolor: 'background.default',
           p: { xs: 1, sm: 2, md: 3 },
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          transition: 'background-color 0.3s ease'
         }}
       >
         <Paper
@@ -80,7 +117,8 @@ const CatchphraseGame = () => {
             maxWidth: 600,
             overflow: 'hidden',
             bgcolor: 'background.paper',
-            borderRadius: 2
+            borderRadius: 2,
+            transition: 'background-color 0.3s ease'
           }}
           className={partyMode ? 'party-mode' : ''}
         >
@@ -89,17 +127,32 @@ const CatchphraseGame = () => {
             onTimeChange={game.handleTimeChange}
             partyMode={partyMode}
             onPartyModeChange={setPartyMode}
+            darkMode={darkMode}
+            onDarkModeChange={setDarkMode}
+            team1Name={game.team1Name}
+            team2Name={game.team2Name}
+            onTeamNameChange={game.handleTeamNameChange}
           />
 
           <Box sx={{ p: 3 }}>
-            <Typography variant="h4" align="center" gutterBottom>
-              Catchphrase
+            <Typography 
+              variant="h4" 
+              align="center" 
+              gutterBottom
+              sx={{ 
+                position: 'relative',
+                zIndex: 1
+              }}
+            >
+              🎮 CATCHPHRASE! 🎮
             </Typography>
 
             <GameScores
               team1Score={game.team1Score}
               team2Score={game.team2Score}
               currentTeam={game.currentTeam}
+              team1Name={game.team1Name}
+              team2Name={game.team2Name}
             />
 
             <GameDisplay
@@ -108,6 +161,8 @@ const CatchphraseGame = () => {
               isPlaying={game.isPlaying}
               isPaused={game.isPaused}
               currentTeam={game.currentTeam}
+              team1Name={game.team1Name}
+              team2Name={game.team2Name}
             />
 
             <GameControls
