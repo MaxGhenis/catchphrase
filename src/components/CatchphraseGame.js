@@ -3,6 +3,7 @@ import { Timer, RefreshCw, Play, Pause, Settings } from 'lucide-react';
 import { generate } from 'random-words';
 import './CatchphraseGame.css';
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
 const CatchphraseGame = () => {
   const [currentWord, setCurrentWord] = useState('');
   const [timeLeft, setTimeLeft] = useState(60);
@@ -21,11 +22,9 @@ const CatchphraseGame = () => {
 
   const startRound = () => {
     if (isPaused) {
-      // If resuming from pause, just continue
       setIsPaused(false);
       setIsPlaying(true);
     } else {
-      // Starting new round
       getNewWord();
       setIsPlaying(true);
       setTimeLeft(roundDuration);
@@ -103,7 +102,7 @@ const CatchphraseGame = () => {
           onClick={() => setShowSettings(!showSettings)}
           className="settings-button"
         >
-          <Settings className="button-icon" />
+          <Settings size={28} />
         </button>
       </h1>
       
@@ -134,16 +133,16 @@ const CatchphraseGame = () => {
       </div>
 
       <div className="timer">
-        <Timer className="timer-icon" />
+        <Timer size={42} />
         <span>{timeLeft}s</span>
       </div>
 
       <div className="word-display">
         <div className="current-word">
-          {isPlaying ? currentWord : isPaused ? 'Resume Round' : 'Press Play to Start Round'}
+          {isPlaying ? currentWord : isPaused ? 'Resume Round' : 'Press Play to Start'}
         </div>
         <div className="turn-indicator">
-          {isPlaying ? `Team ${currentTeam}'s Round` : `Team ${currentTeam} Get Ready!`}
+          {isPlaying || isPaused ? `Team ${currentTeam}'s Round` : `Team ${currentTeam} Get Ready!`}
         </div>
       </div>
 
@@ -151,17 +150,17 @@ const CatchphraseGame = () => {
         <div className="main-controls">
           {!isPlaying ? (
             <button onClick={startRound} className="play-button">
-              <Play className="button-icon" />
+              <Play size={24} />
               {isPaused ? 'Resume' : 'Start Round'}
             </button>
           ) : (
             <button onClick={pauseGame} className="pause-button">
-              <Pause className="button-icon" />
+              <Pause size={24} />
               Pause
             </button>
           )}
           <button onClick={resetGame} className="reset-button">
-            <RefreshCw className="button-icon" />
+            <RefreshCw size={24} />
             Reset Game
           </button>
         </div>

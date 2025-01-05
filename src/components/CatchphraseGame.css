@@ -1,181 +1,179 @@
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  min-height: 100vh;
+}
+
 .game-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 24px;
-    font-size: 24px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-  
-  .settings-button {
-    background: none;
-    padding: 4px;
-    color: #666;
-  }
-  
-  .settings-button:hover {
-    color: #000;
-  }
-  
-  .settings-panel {
-    margin-bottom: 20px;
-    padding: 12px;
-    background-color: #f8f9fa;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-  
-  .time-select {
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid #d1d5db;
-  }
-  
-  .scores {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-size: 18px;
-  }
-  
-  .current-team {
-    font-weight: bold;
-    color: #2563eb;
-  }
-  
-  .round-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-  
-  .timer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .timer-icon {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .points {
-    font-size: 16px;
-    color: #059669;
-    font-weight: 500;
-  }
-  
-  .word-display {
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  
-  .current-word {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    min-height: 40px;
-  }
-  
-  .turn-indicator {
-    color: #666;
-    font-size: 16px;
-  }
-  
-  .controls {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .main-controls, .game-controls {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-  }
-  
-  button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .button-icon {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .play-button {
-    background-color: #2563eb;
-    color: white;
-  }
-  
-  .play-button:hover {
-    background-color: #1d4ed8;
-  }
-  
-  .pause-button {
-    background-color: #eab308;
-    color: white;
-  }
-  
-  .pause-button:hover {
-    background-color: #ca8a04;
-  }
-  
-  .reset-button {
-    background-color: #f3f4f6;
-    color: #374151;
-    border: 1px solid #d1d5db;
-  }
-  
-  .reset-button:hover {
-    background-color: #e5e7eb;
-  }
-  
-  .got-it-button {
-    background-color: #059669;
-    color: white;
-    flex: 1;
-  }
-  
-  .got-it-button:hover {
-    background-color: #047857;
-  }
-  
-  .skip-button {
-    background-color: #4b5563;
-    color: white;
-    flex: 1;
-  }
-  
-  .skip-button:hover {
-    background-color: #374151;
-  }
+  max-width: 500px;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: normal;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #95a5a6;
+  opacity: 0.5;
+}
+
+.settings-button:hover {
+  opacity: 0.7;
+}
+
+.settings-panel {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.time-select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  margin: 32px 0;
+  font-size: 24px;
+}
+
+.current-team {
+  color: #3498db;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 64px;
+  margin: 40px 0;
+  color: #333;
+}
+
+.timer-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.word-display {
+  margin: 40px 0;
+}
+
+.current-word {
+  font-size: 48px;
+  margin-bottom: 16px;
+  min-height: 60px;
+  color: #2c3e50;
+}
+
+.turn-indicator {
+  font-size: 20px;
+  color: #666;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.main-controls, .game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+button {
+  font-size: 20px;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.button-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.play-button {
+  background-color: #27ae60;
+  color: white;
+  min-width: 160px;
+}
+
+.play-button:hover {
+  background-color: #219a52;
+}
+
+.pause-button {
+  background-color: #e67e22;
+  color: white;
+  min-width: 160px;
+}
+
+.pause-button:hover {
+  background-color: #d35400;
+}
+
+.reset-button {
+  background-color: #95a5a6;
+  color: white;
+  min-width: 160px;
+}
+
+.reset-button:hover {
+  background-color: #7f8c8d;
+}
+
+.got-it-button {
+  background-color: #3498db;
+  color: white;
+  min-width: 140px;
+}
+
+.got-it-button:hover {
+  background-color: #2980b9;
+}
+
+.skip-button {
+  background-color: #95a5a6;
+  color: white;
+  min-width: 140px;
+}
+
+.skip-button:hover {
+  background-color: #7f8c8d;
+}
