@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles } from 'lucide-react';
+import { AutoAwesome } from '@mui/icons-material';
 
 const GameSettings = ({ roundDuration, onTimeChange, partyMode, onPartyModeChange }) => {
   return (
@@ -22,7 +22,7 @@ const GameSettings = ({ roundDuration, onTimeChange, partyMode, onPartyModeChang
         onClick={() => onPartyModeChange(!partyMode)}
         className={`party-mode-button ${partyMode ? 'active' : ''}`}
       >
-        <Sparkles size={16} />
+        <AutoAwesome sx={{ fontSize: 16 }} />
         {partyMode ? 'Chill Mode' : 'Party Mode'}
       </button>
     </div>

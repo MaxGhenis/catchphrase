@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { generate } from 'random-words';
 
 export const useGame = () => {
@@ -10,6 +10,10 @@ export const useGame = () => {
   const [team2Score, setTeam2Score] = useState(0);
   const [currentTeam, setCurrentTeam] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+
+  // Use ref to avoid dependency issues with useEffect
+  const timeLeftRef = useRef(timeLeft);
+  timeLeftRef.current = timeLeft;
 
   const getNewWord = useCallback(() => {
     const word = generate();
@@ -73,22 +77,21 @@ export const useGame = () => {
 
   useEffect(() => {
     let timer;
-    if (isPlaying && timeLeft > 0) {
+    if (isPlaying) {
       timer = setInterval(() => {
-        setTimeLeft(time => {
-          if (time <= 1) {
-            clearInterval(timer);
-            endRound();
-            return roundDuration;
-          }
-          return time - 1;
-        });
+        const currentTime = timeLeftRef.current;
+        if (currentTime <= 1) {
+          clearInterval(timer);
+          endRound();
+          return;
+        }
+        setTimeLeft(time => time - 1);
       }, 1000);
     }
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [isPlaying, roundDuration, endRound]);
+  }, [isPlaying, endRound]);
 
   return {
     currentWord,
