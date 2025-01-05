@@ -1,0 +1,52 @@
+.settings-banner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 8px 16px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 24px;
+  }
+  
+  .time-select {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    background: white;
+  }
+  
+  .time-select:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+  
+  .party-mode-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .party-mode-button:hover {
+    background: #f8f9fa;
+    border-color: #ccc;
+  }
+  
+  .party-mode-button.active {
+    background: #3498db;
+    border-color: #3498db;
+    color: white;
+  }
+  
+  .party-mode-button.active:hover {
+    background: #2980b9;
+  }

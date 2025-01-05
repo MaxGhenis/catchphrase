@@ -1,0 +1,103 @@
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  
+  .main-controls, .game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  button {
+    font-size: 20px;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transform: translateY(0);
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  .play-button {
+    background-color: #27ae60;
+    color: white;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+  }
+  
+  .play-button:hover {
+    background-color: #219a52;
+    box-shadow: 0 6px 16px rgba(39, 174, 96, 0.3);
+  }
+  
+  .pause-button {
+    background-color: #e67e22;
+    color: white;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.2);
+  }
+  
+  .pause-button:hover {
+    background-color: #d35400;
+    box-shadow: 0 6px 16px rgba(230, 126, 34, 0.3);
+  }
+  
+  .reset-button {
+    background-color: #95a5a6;
+    color: white;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(149, 165, 166, 0.2);
+  }
+  
+  .reset-button:hover {
+    background-color: #7f8c8d;
+    box-shadow: 0 6px 16px rgba(149, 165, 166, 0.3);
+  }
+  
+  .got-it-button {
+    background-color: #3498db;
+    color: white;
+    min-width: 140px;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+  }
+  
+  .got-it-button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+  }
+  
+  .skip-button {
+    background-color: #95a5a6;
+    color: white;
+    min-width: 140px;
+    box-shadow: 0 4px 12px rgba(149, 165, 166, 0.2);
+  }
+  
+  .skip-button:hover {
+    background-color: #7f8c8d;
+    box-shadow: 0 6px 16px rgba(149, 165, 166, 0.3);
+  }
+  
+  .shortcuts {
+    font-size: 14px;
+    color: #666;
+    opacity: 0.7;
+    margin-top: 4px;
+  }

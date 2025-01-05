@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Settings } from 'lucide-react';
 import { useGame } from './useGame';
 import GameDisplay from './GameDisplay';
 import GameControls from './GameControls';
 import GameScores from './GameScores';
 import GameSettings from './GameSettings';
-import './styles.css';
+import './styles/index.css';
 
 const CatchphraseGame = () => {
-  const [showSettings, setShowSettings] = useState(false);
+  const [partyMode, setPartyMode] = useState(false);
   const game = useGame();
 
   useEffect(() => {
@@ -38,24 +37,15 @@ const CatchphraseGame = () => {
   }, [game]);
 
   return (
-    <div className="game-container">
-      <h1>
-        Catchphrase
-        <button 
-          onClick={() => setShowSettings(!showSettings)}
-          className="settings-button"
-          title="Settings"
-        >
-          <Settings size={28} />
-        </button>
-      </h1>
-      
-      {showSettings && (
-        <GameSettings 
-          roundDuration={game.roundDuration}
-          onTimeChange={game.handleTimeChange}
-        />
-      )}
+    <div className={`game-container ${partyMode ? 'party-mode' : ''}`}>
+      <GameSettings 
+        roundDuration={game.roundDuration}
+        onTimeChange={game.handleTimeChange}
+        partyMode={partyMode}
+        onPartyModeChange={setPartyMode}
+      />
+
+      <h1>Catchphrase</h1>
 
       <GameScores
         team1Score={game.team1Score}

@@ -1,0 +1,36 @@
+.scores {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    margin: 32px 0;
+    font-size: 24px;
+  }
+  
+  .current-team {
+    color: #3498db;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+  
+  .timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 72px;
+    margin: 40px 0;
+    color: #333;
+    font-weight: 300;
+    letter-spacing: -2px;
+  }
+  
+  .timer.low-time {
+    color: #e74c3c;
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
