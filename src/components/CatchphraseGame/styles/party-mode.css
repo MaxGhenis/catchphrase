@@ -1,80 +1,237 @@
-/* Party mode styles for Material UI components */
+/* Base party mode */
 .party-mode {
     background: white !important;
     animation: backgroundShift 10s linear infinite;
+    position: relative;
+    overflow: hidden;
   }
   
+  /* Party elements - using multiple pseudo-elements for more chaos */
+  .party-mode::before {
+    content: '🎪🦄🌈';
+    position: absolute;
+    font-size: 40px;
+    animation: flyAcross 7s linear infinite;
+    top: 20%;
+    white-space: nowrap;
+  }
+  
+  .party-mode::after {
+    content: '🎉🎈✨';
+    position: absolute;
+    font-size: 30px;
+    animation: flyAcrossReverse 5s linear infinite;
+    animation-delay: 2.5s;
+    top: 60%;
+    white-space: nowrap;
+  }
+  
+  /* More flying elements on child divs */
+  .party-mode > div:nth-child(2n)::before {
+    content: '🌟🎪🎨';
+    position: absolute;
+    font-size: 24px;
+    animation: diagonalFly 4s ease-in-out infinite;
+    left: 10%;
+    white-space: nowrap;
+  }
+  
+  .party-mode > div:nth-child(3n)::after {
+    content: '🎵🎸🎪';
+    position: absolute;
+    font-size: 28px;
+    animation: diagonalFlyReverse 6s ease-in-out infinite;
+    right: 15%;
+    white-space: nowrap;
+  }
+  
+  .party-mode > div:nth-child(4n)::before {
+    content: '🌈🦄✨';
+    position: absolute;
+    font-size: 32px;
+    animation: zigZag 8s linear infinite;
+    left: 30%;
+    white-space: nowrap;
+  }
+  
+  /* Super rainbow title */
+  .party-mode .MuiTypography-h4 {
+    animation: crazyDance 2s ease-in-out infinite, rainbow 3s linear infinite;
+    font-size: 2.5rem !important;
+    text-shadow: 3px 3px 0 #ff0000,
+                 6px 6px 0 #ff7f00,
+                 9px 9px 0 #ffff00;
+    font-weight: 900 !important;
+    letter-spacing: 3px;
+    transform-origin: center;
+  }
+  
+  /* Extreme word display */
   .party-mode .MuiTypography-h3 {
-    animation: rainbow 3s linear infinite;
-    font-size: 48px !important;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    animation: rainbow 3s linear infinite, bounce 0.5s ease infinite, shake 0.5s infinite;
+    font-size: 54px !important;
+    text-shadow: 3px 3px 10px rgba(255,0,0,0.5),
+                 -3px -3px 10px rgba(0,255,0,0.5),
+                 6px 6px 15px rgba(0,0,255,0.5);
+    transform-origin: center;
+    font-weight: 900 !important;
   }
   
-  .party-mode .MuiTypography-h2 {
-    animation: bounce 0.5s ease infinite;
-  }
-  
+  /* Party buttons */
   .party-mode .MuiButton-root {
-    animation: colorPulse 4s infinite;
+    animation: colorPulse 4s infinite, bounce 2s infinite;
     transform: scale(1.1);
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    background-image: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    background-size: 400% 400%;
+    animation: gradientBG 3s ease infinite;
   }
   
   .party-mode .MuiButton-root:hover {
-    transform: scale(1.2) rotate(5deg);
+    transform: scale(1.3) rotate(10deg);
+    filter: brightness(1.5);
   }
   
+  /* Score display */
   .party-mode .MuiTypography-h5 {
-    font-size: 1.8rem !important;
-  }
-  
-  .party-mode .MuiTypography-h5[class*="current-team"] {
+    font-size: 2rem !important;
     animation: glow 1s ease-in-out infinite alternate;
   }
   
+  /* Animations */
   @keyframes backgroundShift {
-    0% { background-color: #ffffff }
-    25% { background-color: #fff8e1 }
-    50% { background-color: #e8f5e9 }
-    75% { background-color: #e3f2fd }
-    100% { background-color: #ffffff }
+    0% { background: linear-gradient(45deg, #ff61d5, #b318f0) }
+    25% { background: linear-gradient(45deg, #61deff, #18f0e8) }
+    50% { background: linear-gradient(45deg, #61ff7e, #18f03c) }
+    75% { background: linear-gradient(45deg, #fff461, #f0cd18) }
+    100% { background: linear-gradient(45deg, #ff61d5, #b318f0) }
+  }
+  
+  @keyframes flyAcross {
+    0% {
+      left: -100px;
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+      left: calc(100% + 100px);
+      transform: scale(1) rotate(360deg);
+    }
+  }
+  
+  @keyframes flyAcrossReverse {
+    0% {
+      right: -100px;
+      transform: scale(1) rotate(360deg);
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+      right: calc(100% + 100px);
+      transform: scale(1) rotate(0deg);
+    }
+  }
+  
+  @keyframes diagonalFly {
+    0% {
+      left: -50px;
+      top: -50px;
+      transform: scale(0.5);
+    }
+    50% {
+      left: 50%;
+      top: 50%;
+      transform: scale(1.5);
+    }
+    100% {
+      left: calc(100% + 50px);
+      top: calc(100% + 50px);
+      transform: scale(0.5);
+    }
+  }
+  
+  @keyframes diagonalFlyReverse {
+    0% {
+      right: -50px;
+      bottom: -50px;
+      transform: scale(0.5);
+    }
+    50% {
+      right: 50%;
+      bottom: 50%;
+      transform: scale(1.5);
+    }
+    100% {
+      right: calc(100% + 50px);
+      bottom: calc(100% + 50px);
+      transform: scale(0.5);
+    }
+  }
+  
+  @keyframes zigZag {
+    0% { transform: translateX(-100%) translateY(0) scale(1); }
+    25% { transform: translateX(-50%) translateY(50px) scale(1.2); }
+    50% { transform: translateX(0) translateY(-50px) scale(1.5); }
+    75% { transform: translateX(50%) translateY(50px) scale(1.2); }
+    100% { transform: translateX(200%) translateY(0) scale(1); }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+  }
+  
+  @keyframes crazyDance {
+    0% { transform: rotate(-5deg) scale(1) translateY(0); }
+    25% { transform: rotate(5deg) scale(1.2) translateY(-10px); }
+    50% { transform: rotate(-5deg) scale(1) translateY(0); }
+    75% { transform: rotate(5deg) scale(1.2) translateY(-10px); }
+    100% { transform: rotate(-5deg) scale(1) translateY(0); }
+  }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
   
   @keyframes rainbow {
-    0% { color: #ff0000 }
-    20% { color: #ff8000 }
-    40% { color: #ffff00 }
-    60% { color: #00ff00 }
-    80% { color: #0000ff }
-    100% { color: #ff0000 }
+    0% { color: #ff0000; }
+    16.666% { color: #ff7f00; }
+    33.333% { color: #ffff00; }
+    50% { color: #00ff00; }
+    66.666% { color: #0000ff; }
+    83.333% { color: #4b0082; }
+    100% { color: #ff0000; }
   }
   
   @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  @keyframes colorPulse {
-    0%, 100% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(180deg); }
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.1); }
   }
   
   @keyframes glow {
     from {
-      text-shadow: 0 0 5px #fff,
-                   0 0 10px #fff,
-                   0 0 15px #0073e6,
-                   0 0 20px #0073e6;
-    }
-    to {
       text-shadow: 0 0 10px #fff,
                    0 0 20px #fff,
                    0 0 30px #0073e6,
-                   0 0 40px #0073e6;
+                   0 0 40px #0073e6,
+                   0 0 50px #0073e6,
+                   0 0 60px #0073e6,
+                   0 0 70px #0073e6;
     }
-  }
-  
-  @keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+    to {
+      text-shadow: 0 0 20px #fff,
+                   0 0 30px #ff4da6,
+                   0 0 40px #ff4da6,
+                   0 0 50px #ff4da6,
+                   0 0 60px #ff4da6,
+                   0 0 70px #ff4da6,
+                   0 0 80px #ff4da6;
+    }
   }
