@@ -20,10 +20,8 @@ h1 {
   font-size: 32px;
   font-weight: normal;
   margin-bottom: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+  position: relative;
+  text-align: center;
 }
 
 .settings-button {
@@ -33,6 +31,10 @@ h1 {
   cursor: pointer;
   color: #95a5a6;
   opacity: 0.5;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .settings-button:hover {
